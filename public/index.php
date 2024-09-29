@@ -1,14 +1,14 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php'; // подключаем автозагрузчик Composer
 
-use Slim\Factory\AppFactory;
+use Slim\Factory\AppFactory; // создаем экземпляр приложения Slim
 
-$app = AppFactory::create();
-$app->addErrorMiddleware(true, true, true);
+$app = AppFactory::create(); // инициализируем приложение
+$app->addErrorMiddleware(true, true, true); // добавляем обработчик ошибок
 
-$app->get('/', function ($request, $response) {
-    $response->getBody()->write('Welcome to Slim!');
-    return $response;
+$app->get('/users', function ($request, $response) { // регистрируем обработчик GET-запроса на /users
+    return $response->write('Get /users'); // возвращаем ответ в виде текста
 });
-$app->run();
+
+$app->run(); // запускаем приложение
