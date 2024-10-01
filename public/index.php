@@ -13,7 +13,13 @@ $container->set('renderer', function () {
 $app = AppFactory::createFromContainer($container);
 $app->addErrorMiddleware(true, true, true);
 
-$app->get('/users/{id}', function ($request, $response, $args) {
+$users = ['mike', 'mishel', 'adel', 'keks', 'kamila'];
+$app->get('/users', function ($request, $response) use ($users) {
+    return $this->get('renderer')->render($response, 'users/index.phtml', ['users' => $users]);
+});
+
+
+$app->get('/users/{id:.+}', function ($request, $response, $args) {
     $params = ['id' => $args['id'], 'nickname' => 'user-' . $args['id']];
     return $this->get('renderer')->render($response, 'users/show.phtml', $params);
 });
