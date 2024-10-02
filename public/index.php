@@ -14,8 +14,13 @@ $app = AppFactory::createFromContainer($container);
 $app->addErrorMiddleware(true, true, true);
 
 $users = ['mike', 'mishel', 'adel', 'keks', 'kamila'];
-$app->get('/users', function ($request, $response) use ($users) {
-    return $this->get('renderer')->render($response, 'users/index.phtml', ['users' => $users]);
+$app->get('/users', function ($request, $response) use ($users){
+    $term = $request->getQueryParam('term');
+    $filteredCourses = array_filter($users, function ($user) use ($term) {
+        return str_contains($user, $term);
+    });
+    $params = ['users' => $filteredCourses];
+    return $this->get('renderer')->render($response, "users/index.phtml", $params);
 });
 
 
