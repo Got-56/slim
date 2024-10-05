@@ -1,0 +1,20 @@
+<form action="<?= $router->urlFor('user.store') ?>" method="post">
+    <div>
+        <h1>New User</h1>
+        <hr>
+    </div>
+    <div>
+        <label>
+            Nickname:
+            <input type="text" name="user[nickname]" value="<?= htmlspecialchars($user['nickname'] ?? '')?>">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Email:
+            <input type="email" name="user[email]" value="<?= htmlspecialchars($user['email'] ?? '')?>">
+        </label>
+    </div>
+    <input type="submit" value="Submit">
+</form>
