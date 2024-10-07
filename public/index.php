@@ -59,10 +59,14 @@ $app->get('/users', function ($request, $response) use ($repo, $router){
     return $this->get('renderer')->render($response, 'users/index.phtml', $params);
 })->setName('index.users');
 
-$app->get('/users/{nickname}/{id}', function ($request, $response, $args) {
-    $params = [
-        'user' => ['nickname' => $args['nickname'], 'id' => $args['id']],
-    ];
+$app->get('/users/{id}', function ($request, $response, $args) use ($repo) {
+    $id = $args['id'];
+    $users = $repo->getAllUsers();
+    $user = array_filter($users, fn($user)=> $user['id'] === $id);
+    if (empty($user)) {
+        return $response->write('User not found')->withStatus(404);
+    }
+    $params = ['user' => array_shift($user)];
     return $this->get('renderer')->render($response, 'users/show.phtml', $params);
 })->setName('show.user');
 
