@@ -19,7 +19,7 @@ $app->addErrorMiddleware(true, true, true);
 $router = $app->getRouteCollector()->getRouteParser();
 
 $app->get('/', function ($request, $response) use ($router) {
-    // Этот маршрут просто перенаправляет на страницу пользователей
+
     return $response->withRedirect($router->urlFor('index.users'), 302);
 });
 
