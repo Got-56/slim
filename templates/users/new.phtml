@@ -1,4 +1,4 @@
-<form action="<?= $router->urlFor('user.store') ?>" method="post">
+<form action="<?= $router->urlFor('create.user') ?>" method="post">
     <div>
         <h1>New User</h1>
         <hr>
@@ -6,15 +6,17 @@
     <div>
         <label>
             Nickname:
-            <input type="text" name="user[nickname]" value="<?= htmlspecialchars($user['nickname'] ?? '')?>">
+            <input type="text" name="user[nickname]" value="<?= htmlspecialchars($user['nickname'])?>">
         </label>
+        <?php if (isset($errors['nickname'])): ?>
+            <div><?= htmlspecialchars($errors['nickname']) ?></div>
+        <?php endif; ?>
     </div>
-
     <div>
         <label>
             Email:
-            <input type="email" name="user[email]" value="<?= htmlspecialchars($user['email'] ?? '')?>">
+            <input type="email" name="user[email]" value="<?= htmlspecialchars($user['email'])?>">
         </label>
     </div>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Sign Up">
 </form>

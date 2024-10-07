@@ -1,16 +1,15 @@
-<form action="/users" method="get">
-    <input type="search" name="term" value="<?= htmlspecialchars($term ?? '') ?>" />
-    <input type="submit" value="search">
+<form action="<?= $router->urlFor('index.users') ?>" method="get">
+    <label>Search for user:</label>
+    <input type="search" id="term" name="term" value="<?= htmlspecialchars($term) ?>" />
+    <button type="submit">Search</button>
 </form>
 
-<a href="<?= $router->urlFor('user.create') ?>">Create New User</a>
-
+<hr>
+<?php if (empty($users)): ?>
+    <p>Nothing to display. :(</p>
+<?php endif; ?>
 <ul>
-    <?php if (empty($users)): ?>
-        <li>No users found.</li>
-    <?php else: ?>
-        <?php foreach ($users as $user): ?>
-            <li><?= htmlspecialchars($user['nickname']) ?> (<?= htmlspecialchars($user['email']) ?>, ID: <?= htmlspecialchars($user['id']) ?>)</li>
-        <?php endforeach; ?>
-    <?php endif; ?>
+    <?php foreach ($users as $id => $user): ?>
+        <li><a href="<?= $router->urlFor('show.user', ['nickname' => $user['nickname'], 'id' => $user['id']]) ?>"><?= htmlspecialchars($user['nickname']) ?></a></li>
+    <?php endforeach; ?>
 </ul>

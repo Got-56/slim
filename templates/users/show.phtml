@@ -1,6 +1,9 @@
-<p>id=<?= htmlspecialchars($id) ?></p>
+<p>Hello,<?= htmlspecialchars($user['nickname']) ?>!</p>
+<p>Your ID is <?= htmlspecialchars($user['id']) ?></p>
 
-<p>nickname=user-<?= htmlspecialchars($id) ?></p>
+<p>
+    <a href="<?= $router->urlFor('show.user',['nickname' => $user['nickname'], 'id' => $user['id']]) ?>">View your profile</a>
+</p>
 
 
 
