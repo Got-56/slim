@@ -1,3 +1,6 @@
+<?php if (!empty($flash)): ?>
+<p style="color: green"><?= $flash['success'][0] ?></p>
+<?php endif; ?>
 <form action="<?= $router->urlFor('index.users') ?>" method="get">
     <label>Search for user:</label>
     <input type="search" id="term" name="term" value="<?= htmlspecialchars($term) ?>" />
