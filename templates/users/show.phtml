@@ -1,8 +1,8 @@
-<p>Hello,<?= htmlspecialchars($user['nickname']) ?>!</p>
+<p>Hello, <?= htmlspecialchars($user['nickname']) ?>!</p>
 <p>Your ID is <?= htmlspecialchars($user['id']) ?></p>
 
 <p>
-    <a href="<?= $router->urlFor('show.user',['nickname' => $user['nickname'], 'id' => $user['id']]) ?>">View your profile</a>
+    <a href="<?= $router->urlFor('index.users') ?>">Back to users list</a>
 </p>
 
 

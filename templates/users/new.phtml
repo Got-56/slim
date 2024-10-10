@@ -9,7 +9,7 @@
             <input type="text" name="user[nickname]" value="<?= htmlspecialchars($user['nickname'])?>">
         </label>
         <?php if (isset($errors['nickname'])): ?>
-            <div><?= htmlspecialchars($errors['nickname']) ?></div>
+            <div style="color: red;"><?= htmlspecialchars($errors['nickname']) ?></div>
         <?php endif; ?>
     </div>
     <div>
