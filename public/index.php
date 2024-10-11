@@ -154,4 +154,11 @@ $app->patch('/users/{id}', function ($request, $response, $args) use ($repo, $ro
     return $this->get('renderer')->render($response, 'users/edit.phtml', $params);
 })->setName('user.update');
 
+$app->delete('/users/{id}', function ($request, $response, $args) use ($repo, $router) {
+    $id = $args['id'];
+    $repo->destroy($id);
+    $this->get('flash')->addMessage('success', 'User was deleted successfully');
+    return $response->withRedirect($router->urlFor('index.users'));
+});
+
 $app->run();

@@ -50,4 +50,13 @@ class UserRepository
         }
         return null;
     }
+
+    public function destroy(string $id): void
+    {
+        $users = $this->getAllUsers();
+        $filteredUsers = array_filter($users, function ($user) use ($id) {
+            return $user['id'] !== $id;
+        });
+        file_put_contents($this->repoFile, json_encode($filteredUsers, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+    }
 }
