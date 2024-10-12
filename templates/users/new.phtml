@@ -1,22 +1,24 @@
-<form action="<?= $router->urlFor('create.user') ?>" method="post">
+<h1>New User</h1>
+<hr>
+<form action="/users" method="post">
     <div>
-        <h1>New User</h1>
-        <hr>
-    </div>
-    <div>
-        <label>
+        <label for="user-nickname">
             Nickname:
-            <input type="text" name="user[nickname]" value="<?= htmlspecialchars($user['nickname'])?>">
+            <input type="text" id="user-nickname" name="user[nickname]" value="<?= htmlspecialchars($user['nickname'] ?? '') ?>" required>
         </label>
         <?php if (isset($errors['nickname'])): ?>
-            <div style="color: red;"><?= htmlspecialchars($errors['nickname']) ?></div>
-        <?php endif; ?>
+            <div><?= $errors['nickname'] ?></div>
+        <?php endif ?>
     </div>
     <div>
-        <label>
+        <label for="user-email">
             Email:
-            <input type="email" name="user[email]" value="<?= htmlspecialchars($user['email'])?>">
+            <input type="text" id="user-email" name="user[email]" value="<?= htmlspecialchars($user['email'] ?? '') ?>" required>
         </label>
     </div>
-    <input type="submit" value="Sign Up">
+    <div>
+        <button type="submit" title="Submit form">Submit</button>
+    </div>
 </form>
+
+<p><a href="/users">Back to users list</a></p>

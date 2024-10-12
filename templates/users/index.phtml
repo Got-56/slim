@@ -1,15 +1,21 @@
-<form action="<?= $router->urlFor('index.users') ?>" method="get">
-    <label>Search for user:</label>
-    <input type="search" id="term" name="term" value="<?= htmlspecialchars($term) ?>" />
-    <button type="submit">Search</button>
-</form>
+<h1>Users</h1>
 
+<?php if (!empty($flash)): ?>
+    <p style="color: green"><?= $flash['success'][0]?></p>
+<?php endif; ?>
+<p><a href="/users/new">Add new user</a></p>
+<div>
+    <form action="/users" method="get">
+        <input type="search" name="term" value="<?= htmlspecialchars($term) ?>" />
+        <button type="submit">Search</button>
+    </form>
+</div>
 <hr>
 <?php if (empty($users)): ?>
-    <p>Nothing to display. :(</p>
+    <p>Nothing to display, sorry. :(</p>
 <?php endif; ?>
 <ul>
     <?php foreach ($users as $id => $user): ?>
-        <li><a href="<?= $router->urlFor('show.user', ['nickname' => $user['nickname'], 'id' => $user['id']]) ?>"><?= htmlspecialchars($user['nickname']) ?></a></li>
+        <li><a href="/users/<?= htmlspecialchars($id) ?>"><?= htmlspecialchars($user['nickname']) ?></a></li>
     <?php endforeach; ?>
 </ul>

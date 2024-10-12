@@ -1,7 +1,7 @@
 <h1>Edit User</h1>
 <hr>
-<form action="/users/<?= htmlspecialchars($user['id']) ?>" method="post">
-    <input type="hidden" name="_METHOD" value="PATCH"> <!-- Убедитесь, что это поле присутствует -->
+<form action="/users/<?= $id ?>" method="post">
+    <input type="hidden" name="_METHOD" value="PATCH">
     <div>
         <label for="user-nickname">
             Nickname:
@@ -23,7 +23,7 @@
 </form>
 
 <h2>Delete user?</h2>
-<form action="/users/<?= htmlspecialchars($user['id']) ?>" method="post">
+<form action="/users/<?= $id ?>" method="post">
     <input type="hidden" name="_METHOD" value="DELETE">
     <input type="submit" value="Remove">
 </form>
